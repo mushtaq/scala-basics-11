@@ -4,39 +4,33 @@ package data
 case class Address(street: String, pin: Int)
 
 object Address {
-  
+
 }
 
 case class Person(name: String, address: Address)
 
 object Person {
-  
+
 }
 
 case class Book(
   author: String,
   title: String,
-  basePrice: Double,
-  isImported: Boolean
-  )
+  basePrice: Double
+)
 
 object Book {
-  implicit val booOrd: Ord[Book] = (a: Book, b: Book) => a.basePrice > b.basePrice
-
-  implicit val readBook: Reads[Book] = Json.reads
-
-  implicit val writeBook: Writes[Book] = Json.writes[Book]
 }
 
 object Data {
 
   val books = List(
-    Book("odersky", "scala prog", 100, false),
-    Book("odersky", "apple", 100, false),
-    Book("odersky", "complexity", 400, false),
-    Book("misky", "ocaml prog", 1000, true),
-    Book("misky", "sml", 88, false),
-    Book("hickey", "clojure prog", 500, true)
+    Book("odersky", "scala prog", 100),
+    Book("odersky", "apple", 100),
+    Book("odersky", "complexity", 400),
+    Book("misky", "ocaml prog", 1000),
+    Book("misky", "sml", 88),
+    Book("hickey", "clojure prog", 500)
   )
 
   val people = List(

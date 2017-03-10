@@ -1,0 +1,26 @@
+
+
+sealted trait Tree[T]
+case class Node[T](left: Tree[T], right: Tree[T], value: T)
+case class Leaft[T](value: T)
+case object EmptyTree extends Tree[???]
+
+
+sealed trait JsValue
+case object JsNull extends JsValue
+case class JsNumber(x: Double) extends JsValue
+case class JsString(x: String) extends JsValue
+case object JsTrue extends JsValue
+case object JsFalse extends JsValue
+
+sealed trait JsToplevel extends JsValue
+case class JsArray(xs: List[JsValue]) extends JsToplevel
+case class JsObject(xs: Map[String, JsValue]) extends JsToplevel
+
+
+/productIds => ["p1", "p2"]             => JsArray
+/productIds => {"ids": ["p1", "p2]}     => JsObject
+
+/productId => "p1"
+
+

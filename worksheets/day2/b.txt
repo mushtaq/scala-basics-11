@@ -1,0 +1,46 @@
+ADT
+
+Algbraic Data Types
+
+///////////////
+sealed trait Option[T]
+object Option {
+    case object None extends Option[???]
+    case class Some[T](x: T) extends Option[T]
+}
+////////////////
+
+sealed trait List[T]
+case class Cons[T](head: T, tail: List[T]) extends List[T]
+case object Nil extends List[???]
+////
+
+Json
+    JsNull
+    JsNumber
+    JsString
+    JsBoolean
+    JsArray
+    JsObject
+
+
+
+sealed trait AST
+case class Const(x: Int) extends AST
+case class Add(a: AST, b: AST) extends AST
+case class Sub(a: AST, b: AST) extends AST
+
+def eval(ast: AST): Int = ast match {
+    case Const(x)    => x
+    case Add(a1, a2) => eval(a1) + eval(a2)
+    case Sub(a1, a2) => eval(a1) - eval(a2)
+}
+
+def simplify(ast: AST): AST = ast match {
+    case Add(a1, Const(0)) => a1
+    case Sub(a1, Const(0)) => a1
+    case _                 => ast
+}
+
+
+
